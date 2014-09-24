@@ -4,6 +4,7 @@ pragmatic-angular
 [pragmatic-angular] is a very small [AngularJS] module for
 * embedding **ANY** [jQuery] plugin including [Twitter Bootstrap], [jQuery UI] and any other [jQuery] plugin
 * handling native and custom events
+
 without hassle.
 
 ## Introduction
@@ -13,6 +14,7 @@ Do you use dozens of [AngularJS] modules wrapping
 * [jQuery UI] widgets
 * **[enter-name-of-your-favorite-[jQuery]-plugin-here]**
 * or even custom javascript event wrapper directives
+
 ?
 
 You don't need to use them anymore (... *except in very very rare cases*).
@@ -22,6 +24,12 @@ This [AngularJS] module contains just 24 lines of code which can reduce your web
 You don't need to read anymore documentation for all the [AngularJS] modules wrapping  [jQuery] plugin.
 
 Learn the [jQuery] plugin of your choice and you can instantly use it within [AngularJS].
+
+Live examples :
+
+* [pragmatic-angular module example utilizing Bootstrap Modal and Popover](http://jsfiddle.net/lgersman/p8ag7pLn/)
+
+* [pragmatic-angular module example utilizing jQuery UI sortable](http://jsfiddle.net/lgersman/swkdLrjq/)
 
 ### Background
 
@@ -41,13 +49,13 @@ While using [AngularJS] with such modules I recognized that most of these direct
 * consist mostly of boilerplate code doing nothing than blow up my webapp size
 * contain bugs which slow down my development process
 
-So the question was : **Do I really need those [AngularJS] plugins ?**
+So the question was : **Do I really need those [AngularJS] modules ?**
 
 The answer is : **NO !**
 
-It's a piece of cake to make your [jQuery] plugins available to [AngularJS] without wrapping them individually into directives. And same for custom events.
+It's piece of cake to make all your [jQuery] plugins available to [AngularJS] without wrapping them individually into directives. And same for custom events.
 
-Thats what [pragmatic-angular] provides : an [AngularJS] module containing 2 directives to use any [jQuery] plugin and any custom event in [AngularJS]
+Thats what [pragmatic-angular] provides : an [AngularJS] module containing 2 directives to use any [jQuery] plugin and any custom event in [AngularJS].
 
 ### Usage
 
@@ -139,11 +147,13 @@ angular.module('app', ['pragmatic-angular'])
 });
 ````
 
-Play with the live example : http://jsfiddle.net/lgersman/swkdLrjq/
+Play with the live example : [pragmatic-angular module example utilizing jQuery UI sortable](http://jsfiddle.net/lgersman/swkdLrjq/).
+
+If you are more familiar with [Twitter Bootstrap] you should consider diving into  [pragmatic-angular module example utilizing Bootstrap Modal and Popover](http://jsfiddle.net/lgersman/p8ag7pLn/) example.
 
 ### ng-on
 
-Using ``ng-on`` allows you to handle ANY native or [custom event](https://developer.mozilla.org/en/docs/Web/API/CustomEvent) events of an element or bubbled from its children.
+Using ``ng-on`` allows you to handle ANY native or [custom](https://developer.mozilla.org/en/docs/Web/API/CustomEvent) events of an element (or even bubbled from its children).
 
 The directive expects data in object notation as it's value.
 
@@ -185,10 +195,50 @@ Example usage :
 
 ##### Real world example
 
+````
+<div ng-controller="main" ng-on="{
+    click     : { handler : onClick, data : { foo : 'bar'}},
+    sortstop  : onSortstop
+}">
+	<ul ng-jquery-plugin="{
+	    sortable : {
+	        helper               : 'clone',
+	        placeholder          : 'ui-state-highlight',
+	        stop                 : onStop
+	    },
+	    disableSelection : {
+	    }
+	}">
+		...
+	</ul>
+</div>
+...
+.controller('main', function($scope) {
+    ...
 
+    $scope.onClick=function(event) {
+        console.log( "onclick : data was ", event.data);
+    };
+
+    $scope.onSortstop=function(event, ui) {
+        console.log( "onSortstop : item ", ui.item[0], " was moved to position ", ui.item.index());
+    };
+});
+````
+
+Play with the live example : [pragmatic-angular module example utilizing jQuery UI sortable](http://jsfiddle.net/lgersman/swkdLrjq/)
+
+If you are more familiar with [Twitter Bootstrap] you should consider diving into  [pragmatic-angular module example utilizing Bootstrap Modal and Popover](http://jsfiddle.net/lgersman/p8ag7pLn/) example.
 
 [pragmatic-angular]: https://github.com/lgersman/pragmatic-angular
 [AngularJS]: http://angularjs.org
 [Twitter Bootstrap]: http://getbootstrap.com/
 [Jquery]: http://jquery.com/
 [jQuery UI]: http://jqueryui.com/
+
+## License
+
+[pragmatic-angular] is dual licensed under
+
+* [MIT](http://www.opensource.org/licenses/MIT)
+* [GPL2](http://www.opensource.org/licenses/GPL-2.0)
