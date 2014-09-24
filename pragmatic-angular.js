@@ -13,7 +13,7 @@ angular.module('pragmatic-angular', [])
 
 	example usage :
 
-	<div ng-on="
+	<div ng-on="{
 		click 					: onClick,
 		tap 						: {handler : onTap},
 		'my.customevent': {
@@ -21,7 +21,7 @@ angular.module('pragmatic-angular', [])
 			data		: {foo : 'bar'},
 			selector: 'BUTTON.active'
 		}
-	">
+	}">
 		<!-- suppose many more nested elements with query plugins attached here-->
 		...
 	</div>
@@ -36,11 +36,11 @@ angular.module('pragmatic-angular', [])
 .directive('ngOn', [function() {
     return {
         link : function(scope, element, attrs) {
-            var events=scope.$eval(attrs.ngOn), $e=$(element);
+            var events=scope.$eval(attrs.ngOn);
             Object.keys(events).forEach(function(event) {
                 var value = events[event];
                 (typeof(value)==='function') && (value = {handler : value});
-                $e.on(event, value.selector || null, value.data || {}, value.handler);
+                element.on(event, value.selector || null, value.data || {}, value.handler);
             });
         }
     };
