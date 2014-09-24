@@ -17,13 +17,13 @@ Do you use dozens of [AngularJS] modules wrapping
 
 ?
 
-You don't need to use them anymore (... *except in very very rare cases*).
+You dont need to use them anymore (... *except in very very rare cases*).
 
-This [AngularJS] module contains just 24 lines of code which can reduce your web application size massively.
+This [AngularJS] module contains just a few lines of code which can reduce your web application size massively.
 
-You don't need to read anymore documentation for all the [AngularJS] modules wrapping  [jQuery] plugin.
+You dont need to read documentation for all the [AngularJS] modules wrapping  [jQuery] plugin anymore.
 
-Learn the [jQuery] plugin of your choice and you can instantly use it within [AngularJS].
+Know the [jQuery] plugin of your choice and you can instantly use it within [AngularJS].
 
 Live examples :
 
@@ -33,7 +33,7 @@ Live examples :
 
 ### Background
 
-I started years ago with the same mantra as many others :
+I started years ago coding the same mantra as many others :
 
 > Wrap your [jQuery] plugin in a [AngularJS] directive for better readability.
 
@@ -44,8 +44,8 @@ And also
 These mantra seemed to be state of the art for a long time.
 
 While using [AngularJS] with such modules I recognized that most of these directive wrappers
-* just delegate options/method calls to the targeted [jQuery] plugin  
-* don't provide additional functionality
+* just delegate options/method calls to the wrapped [jQuery] plugin  
+* dont provide additional functionality
 * consist mostly of boilerplate code doing nothing than blow up my webapp size
 * contain bugs which slow down my development process
 
@@ -53,9 +53,9 @@ So the question was : **Do I really need those [AngularJS] modules ?**
 
 The answer is : **NO !**
 
-It's piece of cake to make all your [jQuery] plugins available to [AngularJS] without wrapping them individually into directives. And same for custom events.
+Its piece of cake to make all your [jQuery] plugins available to [AngularJS] without wrapping them individually into directives. And same for custom events.
 
-Thats what [pragmatic-angular] provides : an [AngularJS] module containing 2 directives to use any [jQuery] plugin and any custom event in [AngularJS].
+Thats what [pragmatic-angular] provides : an [AngularJS] module containing 2 directives to use any [jQuery] plugin consume any custom event in [AngularJS].
 
 ### Usage
 
@@ -66,7 +66,7 @@ Thats what [pragmatic-angular] provides : an [AngularJS] module containing 2 dir
 
 #### ng-jquery-plugin
 
-``ng-jquery-plugin`` directive can apply one or more [jQuery] plugins to an element. The directive expects data in object notation as it's value.
+``ng-jquery-plugin`` directive can apply one or more [jQuery] plugins to an element. The directive expects data in object notation as its value.
 
 Each key of the object is expected to be an [jQuery] plugin name (to be exact : any of the functions registered on ``jQuery.fn`` can be used).
 
@@ -155,7 +155,7 @@ If you are more familiar with [Twitter Bootstrap] you should consider diving int
 
 Using ``ng-on`` allows you to handle ANY native or [custom](https://developer.mozilla.org/en/docs/Web/API/CustomEvent) events of an element (or even bubbled from its children).
 
-The directive expects data in object notation as it's value.
+The directive expects data in object notation as its value.
 
 Each key of the object is expected to be an one or more space-separated event types and optional namespaces, such as ``click`` or ``keydown.myPlugin``.
 
@@ -202,11 +202,7 @@ Example usage :
 }">
 	<ul ng-jquery-plugin="{
 	    sortable : {
-	        helper               : 'clone',
-	        placeholder          : 'ui-state-highlight',
-	        stop                 : onStop
-	    },
-	    disableSelection : {
+				...
 	    }
 	}">
 		...
